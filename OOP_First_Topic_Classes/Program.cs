@@ -10,6 +10,8 @@ using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml.Linq;
 
+using static System.Console;
+
 //partial class Car {
 
 //    public string name { get; set; }
@@ -232,43 +234,138 @@ public class Point2D<T> {
 
 
 
+public delegate void GreetingDelegate(string name);
+
+
+public delegate double CalcGelegate(double x, double y);
+
+class calc {
+    public static double add(double x, double y)
+    {
+        return x + y;
+    }
+    public double sub(double x, double y)
+    {
+
+        return x - y;
+
+    }
+
+    public double mult(double x, double y)
+    {
+
+        return x - y;
+
+    }
+    public double div(double x, double y)
+    {
+
+        if (y != 0)
+        {
+            return x / y;
+        }
+        throw new DivideByZeroException();
+
+    }
+
+}
 
 class OOP_First_Topsc_Classes {
 
 
-    public static void Main(string[] args)
+   
+
+
+    public static void Greet(string name, GreetingDelegate greetingDelegate) {
+
+        greetingDelegate(name);
+    }
+
+    public static void SayHello(string name) {
+        Console.WriteLine($"HI {name}");
+    }
+
+    public static void SayGoodbye(string name) {
+        Console.WriteLine($"goodbye {name}");
+    } 
+
+    public static void main(string[] args)
     {
 
-        ArrayList arlist = new ArrayList();
-        arlist.Add("One");
-        arlist.Add("two");
-        Console.WriteLine("before coping");
-        foreach(var index in arlist)
-        {
-            Console.WriteLine(index);
+
+        calc calc1 = new calc();
+
+        Write("enter expression");
+        string exp = ReadLine();
+        char sing = ' ';
+        foreach (char i in exp) {
+            if (i == '+' || i == '-' || i == '*' || i == '/') {
+                sing = i;
+                break;
+            }
+        }
+        try {
+
+            string[] numbers = exp.Split(sing);
+            CalcGelegate del = null;
+            switch (sing)
+            {
+
+                case '+':
+                    del = new CalcGelegate(calc.add);
+                    break;
+
+                default:
+                    throw new InvalidOperationException();
+            }
+            Console.WriteLine($"Result : {del(double.Parse(numbers[0]), double.Parse(numbers[1]))}");
+        }
+        catch (Exception ex) {
+            WriteLine(ex.Message);
 
         }
-        Console.WriteLine(arlist.Count);
-
-        object[] arr = new object[arlist.Count];
-        arlist.CopyTo(arr,0);
-
-        Console.WriteLine("Copied :");
-        foreach (var index in arr) {
-            Console.WriteLine(index);
-        }
-        Console.WriteLine();
-        Dictionary<string, int> ageMap = new Dictionary<string, int>();
-        ageMap["John"] = 30;
-        ageMap["Alice"] = 25;
-        ageMap["Bob"] = 35;
 
 
-        foreach (var index in ageMap)
-        {
-            Console.WriteLine( $"{index.Key} :  {index.Value}");
 
-        }
+
+        GreetingDelegate greetingDelegate = new GreetingDelegate(SayHello);
+
+        Greet("MARKUS", greetingDelegate);
+
+        greetingDelegate = SayGoodbye;
+
+        Greet("MARKUS", greetingDelegate);
+
+        //ArrayList arlist = new ArrayList();
+        //arlist.Add("One");
+        //arlist.Add("two");
+        //Console.WriteLine("before coping");
+        //foreach(var index in arlist)
+        //{
+        //    Console.WriteLine(index);
+
+        //}
+        //Console.WriteLine(arlist.Count);
+
+        //object[] arr = new object[arlist.Count];
+        //arlist.CopyTo(arr,0);
+
+        //Console.WriteLine("Copied :");
+        //foreach (var index in arr) {
+        //    Console.WriteLine(index);
+        //}
+        //Console.WriteLine();
+        //Dictionary<string, int> ageMap = new Dictionary<string, int>();
+        //ageMap["John"] = 30;
+        //ageMap["Alice"] = 25;
+        //ageMap["Bob"] = 35;
+
+
+        //foreach (var index in ageMap)
+        //{
+        //    Console.WriteLine( $"{index.Key} :  {index.Value}");
+
+        //}
 
 
 
@@ -301,69 +398,69 @@ class OOP_First_Topsc_Classes {
 
         /*
       //  Users user1 = new Users(/* data *///);
-       // string InputLogin = "213123";
-       // int InputPassword = 12341;
-      //  try
-       // {
-            /*string InputLogin = "213123";
-        int InputPassword = 12341;
-        }
-        catch (Exception) {
-            Console.WriteLine("Something go wrong , try again");
-        }
-        if (user1.login == InputLogin && user1.password == InputPassword ) {
-            Console.WriteLine("you login");
+                                            // string InputLogin = "213123";
+                                            // int InputPassword = 12341;
+                                            //  try
+                                            // {
+        /*string InputLogin = "213123";
+    int InputPassword = 12341;
+    }
+    catch (Exception) {
+        Console.WriteLine("Something go wrong , try again");
+    }
+    if (user1.login == InputLogin && user1.password == InputPassword ) {
+        Console.WriteLine("you login");
 
 
-        }
+    }
 
-        Interface inf = new Interface();
-        inf.printMenu();
-
-
-        Home h1= new Home();
-        h1.s = "asdf";
-
-        Point2D<int>p1= new Point2D<int>();
-        Console.WriteLine($"x = {p1.x}, y = {p1.y}");
-
-        Console.WriteLine(typeof(Point2D<int>));
+    Interface inf = new Interface();
+    inf.printMenu();
 
 
-        Point2D<double> p2 = new Point2D<double>();
-        p2.x = 10.5;
-        p2.y = 13.7;
+    Home h1= new Home();
+    h1.s = "asdf";
 
-        Console.WriteLine($"x = {p2.x}, y = {p2.y}");
+    Point2D<int>p1= new Point2D<int>();
+    Console.WriteLine($"x = {p1.x}, y = {p1.y}");
 
-        Console.WriteLine(typeof(Point2D<double>));
-
-
+    Console.WriteLine(typeof(Point2D<int>));
 
 
-        object obj = 45;
-        Console.WriteLine($"Упаковка: {obj} ");
+    Point2D<double> p2 = new Point2D<double>();
+    p2.x = 10.5;
+    p2.y = 13.7;
 
-        int number = (int)obj;
-        Console.WriteLine($"Розпаковка {number}");
+    Console.WriteLine($"x = {p2.x}, y = {p2.y}");
 
-        //List<int> Userindex = new List<int> { 1, 9, 73, 56, 8, 6 };
-        //int usernumber = Convert.ToInt32(Console.ReadLine());
-
-        //try
-        //{
-        //    if (usernumber >= Userindex.Count())
-        //    {
-        //        throw new IndexOutOfRangeException("You bounded of the range");
-
-        //    }
-        //    Console.WriteLine(Userindex[usernumber]);
-
-        //}
-        //catch (IndexOutOfRangeException e) { Console.WriteLine(e.Message); }
+    Console.WriteLine(typeof(Point2D<double>));
 
 
-        */
+
+
+    object obj = 45;
+    Console.WriteLine($"Упаковка: {obj} ");
+
+    int number = (int)obj;
+    Console.WriteLine($"Розпаковка {number}");
+
+    //List<int> Userindex = new List<int> { 1, 9, 73, 56, 8, 6 };
+    //int usernumber = Convert.ToInt32(Console.ReadLine());
+
+    //try
+    //{
+    //    if (usernumber >= Userindex.Count())
+    //    {
+    //        throw new IndexOutOfRangeException("You bounded of the range");
+
+    //    }
+    //    Console.WriteLine(Userindex[usernumber]);
+
+    //}
+    //catch (IndexOutOfRangeException e) { Console.WriteLine(e.Message); }
+
+
+    */
 
 
 
