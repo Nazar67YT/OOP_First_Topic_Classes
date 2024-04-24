@@ -214,14 +214,16 @@ using static System.Console;
 
 
 
-public class Point2D<T> {
+public class Point2D<T>
+{
 
     public T x { get; set; }
 
     public T y { get; set; }
 
 
-    public Point2D(T x, T y) {
+    public Point2D(T x, T y)
+    {
         x = x;
         y = y;
     }
@@ -239,7 +241,8 @@ public delegate void GreetingDelegate(string name);
 
 public delegate double CalcGelegate(double x, double y);
 
-class calc {
+class calc
+{
     public static double add(double x, double y)
     {
         return x + y;
@@ -270,24 +273,28 @@ class calc {
 
 }
 
-class OOP_First_Topsc_Classes {
+class OOP_First_Topsc_Classes
+{
 
 
-   
 
 
-    public static void Greet(string name, GreetingDelegate greetingDelegate) {
+
+    public static void Greet(string name, GreetingDelegate greetingDelegate)
+    {
 
         greetingDelegate(name);
     }
 
-    public static void SayHello(string name) {
+    public static void SayHello(string name)
+    {
         Console.WriteLine($"HI {name}");
     }
 
-    public static void SayGoodbye(string name) {
+    public static void SayGoodbye(string name)
+    {
         Console.WriteLine($"goodbye {name}");
-    } 
+    }
 
     public static void main(string[] args)
     {
@@ -298,13 +305,16 @@ class OOP_First_Topsc_Classes {
         Write("enter expression");
         string exp = ReadLine();
         char sing = ' ';
-        foreach (char i in exp) {
-            if (i == '+' || i == '-' || i == '*' || i == '/') {
+        foreach (char i in exp)
+        {
+            if (i == '+' || i == '-' || i == '*' || i == '/')
+            {
                 sing = i;
                 break;
             }
         }
-        try {
+        try
+        {
 
             string[] numbers = exp.Split(sing);
             CalcGelegate del = null;
@@ -320,7 +330,8 @@ class OOP_First_Topsc_Classes {
             }
             Console.WriteLine($"Result : {del(double.Parse(numbers[0]), double.Parse(numbers[1]))}");
         }
-        catch (Exception ex) {
+        catch (Exception ex)
+        {
             WriteLine(ex.Message);
 
         }
