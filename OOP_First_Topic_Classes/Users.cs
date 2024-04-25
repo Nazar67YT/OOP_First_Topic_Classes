@@ -14,7 +14,7 @@ namespace OOP_First_Topic_Classes
             {"welcome","Ласкаво просимо в банкомат"},
             {"show_balance", "1. Показати баланс" },
             {"withdraw_funds", "2. Зняти гроші " },
-            {"add_funds", "3. Покласти гроші" },
+            {"add_funds", "3. Покласти гроші" }, 
             {"Change_pin","4. Поміняти пін-код" },
             {"Change_laguage","5. Змінити мову" },
             {"Exit","6. Вийти"},
@@ -49,15 +49,15 @@ namespace OOP_First_Topic_Classes
             {"your_bal","Your Balance: $" },
             {"enter_with","Enter PIN to Withdraw punts" },
             {"removed", "Removed: $"},
-            {"error_remove", "ПОМИЛКА! Неможливо зняти більше, ніж на вашому балансі"},
-            {"add_funds_pin", "Введіть PIN для додавання коштів"},
-            {"add_amount", "Введіть суму для додавання:"},
-            {"balance_updated", "Ваш баланс: $"},
-            {"pin_changed", "PIN-код змінено з:"},
-            {"invalid_choice", "Ви можете обрати 1-6"},
-            {"change_language","Змінити мову" },
-            {"loading","Загрузка..." },
-            {"Fatal","Критична помилка" }
+            {"error_remove", "ERROR! Cant removed more for your balance"},
+            {"add_funds_pin", "Enter PIN to add funds"},
+            {"add_amount", "Enter amount to add:"},
+            {"balance_updated", "Your Balance: $"},
+            {"pin_changed", "Changed PIN from:"},
+            {"invalid_choice", "You can choice 1-6"},
+            {"change_language","Change language" },
+            {"loading","Loading..." },
+            {"Fatal","Fatal ERROR" }
 
 
 
