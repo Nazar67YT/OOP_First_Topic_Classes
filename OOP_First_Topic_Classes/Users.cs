@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace OOP_First_Topic_Classes
 {
-    static Dictionary<string, Dictionary<string, string>> messages = new Dictionary<string, Dictionary<string, string>>()
+    class ATM
+    {
+        static Dictionary<string, Dictionary<string, string>> messages = new Dictionary<string, Dictionary<string, string>>()
     {
 
         {"ukrainian", new Dictionary<string, string>()
@@ -27,6 +30,8 @@ namespace OOP_First_Topic_Classes
             {"add_funds_pin", "Введіть PIN для додавання коштів"},
             {"add_amount", "Введіть суму для додавання:"},
             {"balance_updated", "Ваш баланс: $"},
+            {"Enter_to_contine","Ведіть пін-код щоб продовжити" },
+            {"new_pin","Ведіть новий пін-код"},
             {"pin_changed", "PIN-код змінено з:"},
             {"invalid_choice", "Ви можете обрати 1-6"},
             {"change_language","Змінити мову" },
@@ -53,6 +58,8 @@ namespace OOP_First_Topic_Classes
             {"add_funds_pin", "Enter PIN to add funds"},
             {"add_amount", "Enter amount to add:"},
             {"balance_updated", "Your Balance: $"},
+            {"Enter_to_contine","Enter PIN to contine" },
+            {"new_pin","Enter new PIN:" },
             {"pin_changed", "Changed PIN from:"},
             {"invalid_choice", "You can choice 1-6"},
             {"change_language","Change language" },
@@ -75,18 +82,17 @@ namespace OOP_First_Topic_Classes
 
 
 
-    class ATM
-    {
-        static void ShowMenu ()
+
+        static void ShowMenu(string lenguage)
         {
-            Console.WriteLine("Welcome to the ATM");
-            Console.WriteLine("1. Show balance");
-            Console.WriteLine("2. Withdraw funds");
-            Console.WriteLine("3. Add funds");
-            Console.WriteLine("4. Change PIN");
-            Console.WriteLine("5. Change language");
-            Console.WriteLine("6. Exit");
-            Console.WriteLine("Select one of the options...");
+            Console.WriteLine(messages[lenguage]["welcome"]);
+            Console.WriteLine(messages[lenguage]["withdraw_funds"]);
+            Console.WriteLine(messages[lenguage]["add_funds"]);
+            Console.WriteLine(messages[lenguage]["Change_pin"]);
+            Console.WriteLine(messages[lenguage]["Change_laguage"]);
+            Console.WriteLine(messages[lenguage]["show_balance");
+            Console.WriteLine(messages[lenguage]["show_balance");
+            Console.WriteLine(messages[lenguage]["show_balance");
         }
 
         static int UserInput() {
@@ -104,11 +110,12 @@ namespace OOP_First_Topic_Classes
         {
             
              User user1 = new User();
+            string lenguege = "ukrainian";
             try {
                 while (true)
                 {
 
-                    ShowMenu();
+                    ShowMenu(lenguege);
                     int Choice = UserInput();
                     if (Choice == 1)
                     {
@@ -185,7 +192,20 @@ namespace OOP_First_Topic_Classes
                     }
                     else if (Choice == 5)
                     {
-                        Console.WriteLine("");
+                        Console.WriteLine("Enter 1 - to Ukr \n Enter 2 - to Eng");
+                        int userChoiceLenguage = Convert.ToInt32(Console.ReadLine());
+                        if (userChoiceLenguage == 1)
+                        {
+                            lenguege = "ukrainian";
+                        }
+                        else if (userChoiceLenguage == 2)
+                        {
+                            lenguege = "english";
+                        }
+                        else {
+
+                            Console.WriteLine("TRY AGAIN");
+                        }
 
                     }
 
