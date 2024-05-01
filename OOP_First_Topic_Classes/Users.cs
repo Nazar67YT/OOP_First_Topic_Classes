@@ -24,7 +24,7 @@ namespace OOP_First_Topic_Classes
             {"Select_options", "Виберіть один з варіантів..." },
             {"Enter_pin", "Ведіть пін-код для перегляду балансу" },
             {"your_bal","Ваш баланс: $" },
-            {"enter_with","Ведіть суму для зняття" },
+            {"enter_withd","Ведіть суму для зняття" },
             {"removed", "Знято: $"},
             {"error_remove", "ПОМИЛКА! Неможливо зняти більше, ніж на вашому балансі"},
             {"add_funds_pin", "Введіть PIN для додавання коштів"},
@@ -35,7 +35,7 @@ namespace OOP_First_Topic_Classes
             {"pin_changed", "PIN-код змінено з:"},
             {"invalid_choice", "Ви можете обрати 1-6"},
             {"change_language","Змінити мову" },
-            {"loading","Загрузка..." },
+            {"loading","Загрузка" },
             {"Fatal","Критична помилка" }
             
         }
@@ -54,6 +54,7 @@ namespace OOP_First_Topic_Classes
             {"your_bal","Your Balance: $" },
             {"enter_with","Enter PIN to Withdraw punts" },
             {"removed", "Removed: $"},
+            {"enter_withd", "Enter amount to withdaw" },
             {"error_remove", "ERROR! Cant removed more for your balance"},
             {"add_funds_pin", "Enter PIN to add funds"},
             {"add_amount", "Enter amount to add:"},
@@ -85,14 +86,16 @@ namespace OOP_First_Topic_Classes
 
         static void ShowMenu(string lenguage)
         {
+            
             Console.WriteLine(messages[lenguage]["welcome"]);
+            Console.WriteLine(messages[lenguage]["show_balance"]);
             Console.WriteLine(messages[lenguage]["withdraw_funds"]);
             Console.WriteLine(messages[lenguage]["add_funds"]);
             Console.WriteLine(messages[lenguage]["Change_pin"]);
             Console.WriteLine(messages[lenguage]["Change_laguage"]);
-            Console.WriteLine(messages[lenguage]["show_balance");
-            Console.WriteLine(messages[lenguage]["show_balance");
-            Console.WriteLine(messages[lenguage]["show_balance");
+            Console.WriteLine(messages[lenguage]["Exit"]);
+            Console.WriteLine(messages[lenguage]["Select_options"]);
+           
         }
 
         static int UserInput() {
@@ -108,84 +111,84 @@ namespace OOP_First_Topic_Classes
 
         static void Main(string[] args)
         {
-            
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
              User user1 = new User();
-            string lenguege = "ukrainian";
+            string lenguage = "ukrainian";
             try {
                 while (true)
                 {
 
-                    ShowMenu(lenguege);
+                    ShowMenu(lenguage);
                     int Choice = UserInput();
                     if (Choice == 1)
                     {
-                        Console.WriteLine("Enter PIN to show balance");
+                        Console.WriteLine(messages[lenguage]["Enter_pin"]);
 
                         int PinInput = UserInput();
 
                         if (PinInput == user1.setpin)
                         {
-                            Console.WriteLine("Your Balance: $" + user1.setbalance);
+                            Console.WriteLine(messages[lenguage]["your_bal"] + user1.setbalance);
                         }
 
                     }
 
                     else if (Choice == 2)
                     {
-                        Console.WriteLine("Enter PIN to Withdraw punts");
+                        Console.WriteLine(messages[lenguage]["enter_with"]);
 
                         int PinInput = UserInput();
 
                         if (PinInput == user1.setpin)
                         {
-                            Console.WriteLine("Your Balance: $" + user1.setbalance);
-                            Console.WriteLine("Enter amount to withdraw");
+                            Console.WriteLine(messages[lenguage]["your_bal"] + user1.setbalance);
+                            Console.WriteLine(messages[lenguage]["enter_withd"]);
 
                             int Amount = UserInput();
 
                             if (Amount <= user1.setbalance)
                             {
-                                Console.WriteLine("Removed: $" + user1.setbalance);
+                                Console.WriteLine(messages[lenguage]["your_bal"] + user1.setbalance);
                                 user1.setbalance -= Amount;
                             }
                             else
                             {
-                                Console.WriteLine("ERROR! Cant removed more for your balance");
+                                Console.WriteLine(messages[lenguage]["error_remove"]);
                             }
                         }
                     }
                     else if (Choice == 3)
                     {
-                        Console.WriteLine("Enter PIN to add funds");
+                        Console.WriteLine(messages[lenguage]["add_funds_pin"]);
 
                         int PinInput = UserInput();
 
                         if (PinInput == user1.setpin)
                         {
-                            Console.WriteLine("Your Balance: $" + user1.setbalance);
-                            Console.WriteLine("Enter amount to add:");
+                            Console.WriteLine(messages[lenguage]["balance_updated"] + user1.setbalance);
+                            Console.WriteLine(messages[lenguage]["add_amount"]);
 
                             int AmountToAdd = UserInput();
 
                             user1.setbalance += AmountToAdd;
-                            Console.WriteLine("Your balance: $" + user1.setbalance);
+                            Console.WriteLine(messages[lenguage]["balance_updated"] + user1.setbalance);
 
                         }
 
                     }
                     else if (Choice == 4)
                     {
-                        Console.WriteLine("Enter PIN to contine");
+                        Console.WriteLine(messages[lenguage]["Enter_to_contine"]);
 
                         int PinInput = UserInput();
 
                         if (PinInput == user1.setpin)
                         {
-                            Console.WriteLine("Enter new PIN:");
+                            Console.WriteLine(messages[lenguage]["new_pin"]);
 
                             int NewPin = UserInput();
 
-                            Console.WriteLine("Changed PIN from:" + user1.setpin + NewPin);
+                            Console.WriteLine(messages[lenguage]["pin_changed"] + user1.setpin + NewPin);
                             user1.setpin = NewPin;
 
                         }
@@ -196,13 +199,14 @@ namespace OOP_First_Topic_Classes
                         int userChoiceLenguage = Convert.ToInt32(Console.ReadLine());
                         if (userChoiceLenguage == 1)
                         {
-                            lenguege = "ukrainian";
+                            lenguage = "ukrainian";
                         }
                         else if (userChoiceLenguage == 2)
                         {
-                            lenguege = "english";
+                            lenguage = "english";
                         }
-                        else {
+                        else
+                        {
 
                             Console.WriteLine("TRY AGAIN");
                         }
@@ -211,19 +215,24 @@ namespace OOP_First_Topic_Classes
 
                     else if (Choice == 6)
                     {
-                        Console.WriteLine("Exit...");
-                        Thread.Sleep(5000);
+                        Console.Write("\t\t\t\t\t\t" + messages[lenguage]["loading"]);
+                        for (int i = 0; i < 5; i++) {
+                            Console.Write(".");
+                            Thread.Sleep(500);
+                        }
+                        Thread.Sleep(2000);
                         break;
                     }
                     else if (Choice < 1 || Choice > 6)
                     {
-                        Console.WriteLine("You can choice 1-6 ");
+                        Console.WriteLine(messages[lenguage]["invalid_choice"]);
                     }
 
                 }
-                
+
             }
-            catch (Exception) { Console.WriteLine("                                                     Loading..."); Thread.Sleep(3000); Console.WriteLine("                                                     Fatal ERROR"); }
+            catch (Exception) { Console.WriteLine("\t\t\t\t"+messages[lenguage]["loading"]); Thread.Sleep(3000);
+                Console.WriteLine("\t\t\t"+messages[lenguage]["Fatal"]); }
         }
     }
 }
